@@ -1,10 +1,9 @@
 import { db } from "@/firebase";
 
+const citiesRef = db.collection("cities"); //Se place dans la collection cities
+
 export const CitiesService = {
     async getCities() {
-        //Je me place dans la collection cities
-       const citiesRef = db.collection("cities");
-
        // je récupère toutes les entrées de la collection
        const citiesDoc = await citiesRef.get()
 
@@ -14,16 +13,16 @@ export const CitiesService = {
             id: city.id
             }
         ));
-       console.log(cities);
-
        return cities;
     },
 
     async addCity(city) {
-        const citiesRef = db.collection("cities");
         const result = await citiesRef.add(city); //ajoute notre city à la collection cities de firebase
-
         return result.id;
+    },
 
+    deleteCity(city) {
+        const citiesRefDelete = citiesRef.doc(city.id); //recherche le document correspondant à l'id
+        citiesRefDelete.delete();
     }
 }

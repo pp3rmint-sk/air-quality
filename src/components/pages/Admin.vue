@@ -7,7 +7,10 @@
             <b-button @click="addCityAction" class="primary col-md-1 ml-2">+</b-button>
         </form>
         <ul>
-            <li v-for="city of cities" :key="city.id">{{ city.name }}</li>
+            <li v-for="city of cities" :key="city.id">{{ city.name }}
+                 <b-button @click="deleteCity(city)">Supprimer</b-button>
+            </li>
+           
         </ul>
     </div>
 </template>
@@ -40,6 +43,17 @@ import { CitiesService } from "@/services/Cities.service.js";
                     // L'ajoute à mon tableau cities
                     this.cities.push(city)
                     }
+            },
+
+            deleteCity(city){
+                //delete from firebase Db
+                CitiesService.deleteCity(city);
+
+                //delete du tableau cities de mon app
+                const indexToDelete = this.cities.findIndex(
+                    cityItem => city.id === cityItem.id
+                );
+                this.cities.splice(indexToDelete, 1)
             },
 
             formatCityName(city) {
