@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import City from "@/components/City"
+import City from "@/components/City"
 import CityForm from "@/components/CityForm"
 import Alert from "@/components/Alert"
 import { AirQualityService } from "@/services/AirQuality.service.js"
@@ -28,7 +28,7 @@ import { CitiesService } from "@/services/Cities.service.js"
 
 
 export default {
-  name: 'App',
+  name: 'Home',
   components: {
     City,
     CityForm,
@@ -50,17 +50,16 @@ export default {
 
       const dataForNewCity = await AirQualityService.getAirQuality(cityName)
 
-      if(dataForNewCity !== "Unknown station") (
-          this.cities.push(
-          {
-            name: cityName,
-            iqa: null
-          }
-        ),
+      if(dataForNewCity !== "Unknown station") {
+        const city = {
+          name: this.formatCityName(cityName),
+          iqa: 0
+        }
+        this.cities.push(city),
         this.typeAlert = "success",
         this.messageAlert = "Ville ajoutée avec succès !",
         this.showAlert = true
-      )
+      }
       else {
         this.typeAlert = "danger",
         this.messageAlert = "Ville inconnue ou non répertoriée.",
@@ -73,7 +72,11 @@ export default {
         cityItem => cityItem.name === city.name
       )
       this.cities.splice(indexToDelete, 1)
-    }
+    },
+
+    formatCityName(city) {
+                return city.charAt(0).toUpperCase() + city.substr(1).toLowerCase();
+            }
   },
 }
 </script>
