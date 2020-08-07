@@ -1,5 +1,6 @@
 # vuejs-air-quality
-An experimental Vue.js app using Firebase and others API
+An experimental Vue.js app using Firebase and others API.
+Based on Udemy's Fabien Grignoux Vue.js guide.
 
 ## Project setup
 ```
