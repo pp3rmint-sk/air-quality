@@ -1,4 +1,5 @@
 # vuejs-air-quality
+An experimental Vue.js app using Firebase and others API
 
 ## Project setup
 ```
