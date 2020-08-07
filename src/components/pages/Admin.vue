@@ -28,9 +28,16 @@ import { CitiesService } from "@/services/Cities.service.js";
         },
 
         methods: {
-            addCityAction() {
+            async addCityAction() {
                 if(this.newCity){
+                    //Définit mon nouvel objet city
                     const city = {name: this.formatCityName(this.newCity), iqa: 0}
+
+                    //Ajoute ma nouvelle ville dans Firebase et récupère l'id de la ville
+                    const idCity = await CitiesService.addCity(city);
+                    city.id = idCity;
+
+                    // L'ajoute à mon tableau cities
                     this.cities.push(city)
                     }
             },
