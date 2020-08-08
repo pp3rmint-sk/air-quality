@@ -9,6 +9,7 @@ import VueRouter from 'vue-router'
 import Home from '@/components/pages/Home'
 import Admin from '@/components/pages/Admin'
 import Login from '@/components/pages/Login'
+import CreateAccount from '@/components/pages/CreateAccount'
 
 import { auth } from "@/firebase";
 
@@ -34,6 +35,10 @@ const routes = [
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/create-account',
+    component: CreateAccount
   }
 ]
 
