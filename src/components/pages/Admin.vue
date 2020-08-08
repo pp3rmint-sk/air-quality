@@ -1,13 +1,17 @@
 <template>
     <div>
-        <h1>Admin</h1>
+        <h1 class="text-center my-md-5">Espace administration</h1>
         <form v-on:submit.prevent="addCityAction" class="row form-group ajouterVille">
             <label class="col-md-5 col-form-label">Ajouter une ville :</label>
             <input type="text" id="cityField" class="form-control col-md-5" v-model="newCity">
             <b-button @click="addCityAction" class="primary col-md-1 ml-2">+</b-button>
         </form>
-        <ul>
-            <li v-for="city of cities" :key="city.id">{{ city.name }}</li>
+        <ul class="p-0">
+            <li v-for="city of cities" :key="city.id" class="cities-list">
+                <p>{{ city.name }}</p>
+                <b-button @click="deleteCity(city)" size="sm">Supprimer</b-button>
+            </li>
+           
         </ul>
     </div>
 </template>
@@ -28,11 +32,29 @@ import { CitiesService } from "@/services/Cities.service.js";
         },
 
         methods: {
-            addCityAction() {
+            async addCityAction() {
                 if(this.newCity){
+                    //Définit mon nouvel objet city
                     const city = {name: this.formatCityName(this.newCity), iqa: 0}
+
+                    //Ajoute ma nouvelle ville dans Firebase et récupère l'id de la ville
+                    const idCity = await CitiesService.addCity(city);
+                    city.id = idCity;
+
+                    // L'ajoute à mon tableau cities
                     this.cities.push(city)
                     }
+            },
+
+            deleteCity(city){
+                //delete from firebase Db
+                CitiesService.deleteCity(city);
+
+                //delete du tableau cities de mon app
+                const indexToDelete = this.cities.findIndex(
+                    cityItem => city.id === cityItem.id
+                );
+                this.cities.splice(indexToDelete, 1)
             },
 
             formatCityName(city) {
@@ -45,5 +67,10 @@ import { CitiesService } from "@/services/Cities.service.js";
 </script>
 
 <style scoped>
-
+.cities-list {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 </style>

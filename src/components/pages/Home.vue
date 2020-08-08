@@ -1,6 +1,6 @@
 <template>
     <div>
-         <h1 class="my-4">Mesure de la qualité de l'air</h1>
+         <h1 class="my-5 text-center">Mesure de la qualité de l'air</h1>
       <div class="row">
         <div v-for="city of cities" :key="city.index" class="col-sm-4">
           <City :city="city" @deleteCity="deleteCityAction"/>
