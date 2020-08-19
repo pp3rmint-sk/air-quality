@@ -78,6 +78,19 @@ export default {
                 return city.charAt(0).toUpperCase() + city.substr(1).toLowerCase();
             }
   },
+
+  head: function() {
+    return {
+      title: {
+        inner: "Consultez la qualité de l'air dans votre ville."
+      },
+      meta: [
+        { name: "description", content: "Consultez la qualité de l'air dans votre agglomération ainsi que n'importe quelle ville du monde." },
+        { name: "application-name", content: "Air-quality-check" },
+        { name: "og-title", content: "Consultez la qualité de l'air dans votre ville." }
+      ]
+    }
+  }
 }
 </script>
 

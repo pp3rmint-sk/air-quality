@@ -1,5 +1,5 @@
 {
-  "name": "vuejs-air-quality",
+  "name": "air-quality-check",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "firebase": "^7.15.5",
     "vue": "^2.6.11",
+    "vue-head": "^2.2.0",
     "vue-router": "^3.3.4"
   },
   "devDependencies": {

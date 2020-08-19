@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VueRouter from 'vue-router'
+import VueHead from 'vue-head'
 import Home from '@/components/pages/Home'
 import Admin from '@/components/pages/Admin'
 import Login from '@/components/pages/Login'
@@ -15,6 +16,7 @@ import { auth } from "@/firebase";
 
 
 Vue.use(VueRouter);
+Vue.use(VueHead);
 
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
