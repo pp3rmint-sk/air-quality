@@ -66,5 +66,6 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
   render: h => h(App),
+  mounted: () => document.dispatchEvent(new Event("x-app-rendered")),
   router
 }).$mount('#app')
